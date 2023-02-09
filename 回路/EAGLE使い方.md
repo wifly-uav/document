@@ -46,7 +46,7 @@ EAGLEは回路図と配線図が分かれていて、先に回路図を作ると
 最初に編集するためのプロジェクトを作る。画像の赤丸の部分がハイライトされた状態でメニューバーの「File->New->Project」を選択
 <img src=./img/project.png width=500>
 プロジェクトファイルの中にschematic(回路図)ファイルとboard(配線図)ファイルが入っている状態がプロジェクトの基本構成である。今度はメニューバーの「File->New->Schematic」をクリック。下のような画面が回路図の編集画面である。
-<img src=/回路/img/Schematic.png width=500>
+<img src=./img/Schematic.png width=500>
 基本的な操作としては左側のボックスのボタンを押してから部品を配置したり配線をしていくことになる。部品を選択するときは真ん中あたりに十字の印が入っているのでその近くをクリックする。よく使うボタンと役割の例は以下の通り。
 - **Info**:これを押したうえで部品をクリックするとその部品のデータ上での名前や座標、傾きといった情報が見られる。テキストを入力できる形式になっているのでそこに直接数字や文字を打ち込めばInfoボタンでも変更可能。また抵抗などの回路素子ではvalue(抵抗なら抵抗値、コンデンサなら電気容量など)も見たり変更することができる。
 - **Group**:部品を選択だけする場合などに使う。これを押したうえで部品の十字をクリックすれば部品がハイライトされる。また左クリックした状態で引っ張れば囲った範囲の部品を複数選択できる。何もないところで左クリックをすると灰色の線が出てくるのでそれで選びたい部品だけを囲うこともできる。左クリックで選択範囲の線を曲げ、右クリックで終点。
@@ -65,12 +65,12 @@ EAGLEは回路図と配線図が分かれていて、先に回路図を作ると
 ## 回路図に部品を追加する
 Add Partボタンで部品一覧を選び使いたい部品を選ぶ。抵抗やコンデンサ等はサイズで分かれてるので注意すること。サイズは1608、2014のように表記され、縦横が1.6x0.8,2.0x1.4という意味。また、サイズはインチ表記とミリメートル表記が混ざっているので間違えないように。今使っているのは1608**インチ**
 左クリックで配置、右クリックで回転ができる。終了したいときはEscを押す。
-<img src=/img/add.png width=500>
+<img src=./img/add.png width=500>
 ### 部品検索
 Add Partボタンで展開する部品リストはゴミなので使い方に慣れる必要がある。検索ボックスには使いたい部品名を入力するが、(確か)全文一致検索がデフォルトであるので欲しい部品名をそのまま入力しても検索に引っかからない。そのため前後をワイルドカード「*」で挟むと使いやすくなる。例えば「BNO055」を探したいが「BNO05」までしか覚えていないといった場合、検索ボックスに「BNO05」と入力しても全文一致検索により候補が出てこないが、「*BNO05*」と入力すれば部分一致する部品候補が出てくるようになる。
 ### 部品のsymbol・footprint収集
 回路図でsymbol、配線図でfootprintを用いるが、最初から部品が用意されていないことがある。その場合は、自分で部品データを集めるか、作成する必要がある。
-<img src=/img/footprint.png width=500>
+<img src=./img/footprint.png width=500>
 
 左がsymbol、右がfootprint
 今使っているものはBoxのUAV->に保存している
@@ -87,65 +87,65 @@ Add Partボタンで展開する部品リストはゴミなので使い方に慣
 ## 配線をする
 ### 直接つなぐ場合
 いくつか部品をならべた段階で繋ぐべきピン同士をNetでつないでいく。
-<img src=/img/net.png width=500>
+<img src=./img/net.png width=500>
 
 ### ラベルを使う場合
 直接Netで配線しなくても下の画像のように端子から少しだけ配線を伸ばして、Nameボタンを押したうえでその配線をクリックすれば配線に名前が付けられる。(Infoボタンで配線名を変更しようとすると最初の1つ目以外あとは名前被り扱いとなり変更できない。Nameボタンでは同じ配線がすでにあるので繋げますか?という警告にyesを押すと画像のようになる。)
 同じ配線名同士は画面上で直接つながっていなくても後の配線図(boardファイル)上では繋がっている。
-<img src=/img/label_net.png width=500>
+<img src=./img/label_net.png width=500>
 画像は抵抗の端子にGNDという配線名を付けたところこのときこれらの配線は接続された扱いになっている。
 配線に名前を付けるときPlace labelにチェックを入れておけば画像のように配線横にラベルを配置できる。左側ボックスのLabelボタンを使っても同様のことができる。
 またよく見るとラベルにも十字のクリック部分がついていることが分かる。Infoボタンを押してラベルの十字をクリックすると項目の中にXrefというチェックボックスがある。これにチェックを入れるとラベルを見やすくすることができる。
-<img src=/img/xref.png width=500>
+<img src=./img/xref.png width=500>
 配線を切りたい場合はその配線を選択してデリートする。部品を消したい場合も同様にデリート。
 以上のような操作を繰り返して回路図を作っていく。
 
 ## 回路図チェック
 最後にERCをクリックしてエラーチェックをかける。
-<img src=/img/schematic_ERC.png width=500>
+<img src=./img/schematic_ERC.png width=500>
 警告の中にはICにValueを設定していないなど気にしなくてよいものもあるので無視することもある。
 
 ## 配線図の生成
 回路図左上の回路図/配線図の切り替えボタンを押す。初回は配線図がないので生成しますか？といった内容のテキストにyesを押す。
-<img src=/img/change.png width=500>
+<img src=./img/change.png width=500>
 以下のような画面になる。
-<img src=/img/board.png width=500>
+<img src=./img/board.png width=500>
 
 ## 部品を配置する
 まずは部品を配置する。画像右側のオレンジ線で囲まれた領域が基板サイズの領域である。線をクリックしてMoveをしたりInfoから直接数字を打ち込むことで線が移動するので基板サイズを変更することができる。移動の最小単位は左上の格子模様のボタンで変更できる。
-<img src=/img/grid.png width=500>
+<img src=./img/grid.png width=500>
 Displayは最小単位を編集画面で表示するかどうか、Styleで格子状かドットかを選べる。入力欄に数字を入力し右側から単位を選ぶ(milやmm)など。Multipleは倍率を表す。AltはAltを押しながら操作する場合の最小単位設定である。これを使えば大体の位置合わせを通常の単位でやりながら微調整をする際にAltキーを使ったり、通常はインチやmil単位だがAltのときだけmm単位系に切り替えるなどができる。
 これら設定とMoveボタンを利用して部品を配置していく。
 ただし部品の配置先や回転などの操作は、オレンジ線の枠左下にある十字模様を原点として10cm×8cm内の範囲でしかできない(有料版ではこの制限はなくなる)。
 部品の配置はMoveボタン、向きの変更はRotateボタン、部品を裏側へ配置する際にはMirrorボタンを使う。
-<img src=/img/arrangement.png width=500>
+<img src=./img/arrangement.png width=500>
 
 ## 配線する
 
 ### 自動配線の場合
 autorouterボタンを押してcontinue,startを順に押すだけで配線がされる。評価基準に基づいてマシなものから順番に5つほど候補が表示されるので採用したいものを選んでevaluateを押す。
-<img src=/img/autorouter.png width=500>
-<img src=/img/select.png width=500>
+<img src=./img/autorouter.png width=500>
+<img src=./img/select.png width=500>
 線の太さはEdit->Net classesで変更することができる。Net classesメニューのAddボタンを押してNet classを追加する。AddでNet classを追加するとNo Memberに配線名が表示されるので、同じNet classにまとめたい配線名を選択してMemberに移動させる。
 Net classメニューの上側に「Classes」と「Rules」というタブがあるので、Net classの追加が終わったら「Rules」タブに切り替える。「Rules」では配線幅やクリアランスが直接入力できるようになっているので、好きな数字+単位を入力して「OK」を押す。
-<img src=/img/auto_rules.png width=500>
+<img src=./img/auto_rules.png width=500>
 
 ### 手動配線の場合
 左側の配線ボタンを押して繋ぎたい2箇所を押すと配線することができる。繋ぐべき場所は、黄色い線で表示されている。上部のWidthで線の太さを変えることができる。また、左上のLayerからTop(表面),Bottom(裏面)を選択することができる。1箇所目を押してからマウスのホイールでクリックするとViaが作成でき、配線が表面から裏面に移動する。
-<img src=/img/manual.png width=500>
+<img src=./img/manual.png width=500>
 
 ### 配線をリセットする
 下の画像のようにコマンド欄に「ripup;」と入力してエンターを押す。
-<img src=/img/reset.png width=500>
+<img src=./img/reset.png width=500>
 
 ## デザインルールの確認
 まずは、発注先のデザインルールを確認する。
 「(発注先) drc」で調べるとだいたい誰かが作ってくれいるはず
 .drcをEAGLE/design rulesの中に保存して追加する。
 Edit->Design rulesからLoadで発注先.drcを選択するとデザインルールを変更することができる。
-<img src=/img/drc.png width=500>
+<img src=./img/drc.png width=500>
 DRCボタン(デザインルールチェック)を押して配線ミスや業者にデータを渡す際に加工不可能なものになっていないか確認をする。
-<img src=/img/board_DRC.png width=500>
+<img src=./img/board_DRC.png width=500>
 左下にNo errorsと出ればOK
 ダメな場合はエラー一覧が出てくる。
 エラーの種類としてはair wire(未配線)、overlap(配線が重なっている)、clearance(配線同士や部品同士が近すぎる)　　等
@@ -165,9 +165,9 @@ DRCボタン(デザインルールチェック)を押して配線ミスや業者
 ### PCBwayの場合
 **製造会社ごとに違う可能性があるので他の会社の場合、ちゃんと調べること**（ミスったら製造会社から英語で怒られるかも？）
 業者への発注データをガーバーファイルと呼ぶ。ガーバーの出力には、CAMファイルを使う。
-<img src=/img/cam.png width=500>
+<img src=./img/cam.png width=500>
 SeeedFusion_2_layer.camを選択してProcess Jobを押すとガーバーファイルのZipが出力される。Zipは解凍せず、そのまま[PCBwayのページ](https://www.pcbway.jp/QuickOrderOnline.aspx)にアップロードする。
-<img src=/img/output.png width=500>
+<img src=./img/output.png width=500>
 基板仕様は基本変えない
 変更するのは
 - 枚数
@@ -220,12 +220,12 @@ SeeedFusion_2_layer.camを選択してProcess Jobを押すとガーバーファ�
 - 「Radius」とその右側のアイコン : ポリゴンの角を丸めるかどうかとその半径
 特に無ければ、「Top」、「直角曲げ」、「自分が見やすい太さ」、「塗り方はSolid」、「Thermals off」、「Drop orphans」、「Isolation:0 (0にすると適当に必要な分だけ間隔が確保される)」、「Spacing:Solid塗りなら意味を持たないので弄らなくてよい」、「Rank:優先して塗りたい方を小さく」、「Radius:0」
 といった具合に設定すればよい。
-<img src=/img/polygon.png width=500>
+<img src=./img/polygon.png width=500>
 ポリゴンで基板を一通り囲った後に始点に合わせてクリックすると形が確定しポリゴンの名前を指定するウィンドウが現れる。ポリゴンの名前を回路中のGNDにあたる配線名と同じにすればベタGNDができる。ポリゴンの各種設定は「Info」ボタンを押したあとにポリゴンの辺をクリックしても変更できる。また、ポリゴンの名前は「Name」からでも変更できる。
-<img src=/img/line.png width=500>
+<img src=./img/line.png width=500>
 ポリゴンを削除する場合は「Group」ボタンを押してポリゴンが選択できるようにした状態で、辺を左クリック→Deleteでその辺のみが消える。辺を右クリック→「Delete Polygon」でポリゴン全体が消える。
-<img src=/img/delete.png width=500>
+<img src=./img/delete.png width=500>
 ポリゴンの配置が終わったら「Ratsnest」ボタンで塗りつぶされた結果が確認できる。再編集の際に邪魔に感じたら上のコマンド欄に「ripup @;」と打ち込むことでポリゴンによる塗りつぶしだけ解除される。
 裏面にも配置する場合は再度「Polygon」ボタンを押し配置前にレイヤーをBottomに設定して基板を囲む。
-<img src=/img/ratsnest.png width=500>
+<img src=./img/ratsnest.png width=500>
 ベタGNDにするとノイズに強くなるが、熱が逃げやすいので半田付けが難しくなる。また、ベタGNDはこの例のように安直に基板全部に適応するべきではない。場合によっては、ベタGNDが原因でノイズが発生してしまうことがある。詳細は[ここ](https://www.noise-counterplan.com/point/395/)見て。
